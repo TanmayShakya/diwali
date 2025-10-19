@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Diwali — Ishaan ✨</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ====== Reset & base ====== */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,210,120,0.12), transparent),
+                  linear-gradient(135deg,#0f172a 0%, #4b1451 45%, #f97316 100%);
+      color:#fff;display:flex;align-items:center;justify-content:center;padding:24px;
+      overflow:hidden;
+    }
+
+    /* ====== Card / container ====== */
+    .card{
+      width:min(980px,96%);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius:18px; padding:28px; position:relative; box-shadow:0 12px 40px rgba(2,6,23,0.6);
+      backdrop-filter: blur(6px); overflow:hidden;
+    }
+
+    header{display:flex;align-items:center;gap:18px}
+    .logo{
+      width:84px;height:84px;border-radius:50%;display:grid;place-items:center;
+      background: radial-gradient(circle at 30% 30%, #ffd580, #ff6b6b);
+      box-shadow:0 6px 18px rgba(255,150,50,0.18), inset 0 -6px 18px rgba(0,0,0,0.08);
+      transform:rotate(-12deg)
+    }
+
+    .logo svg{width:56px;height:56px}
+
+    h1{font-family: 'Great Vibes', cursive; font-size:48px; line-height:1; letter-spacing:0.6px; margin-bottom:6px}
+    p.lead{font-size:18px;opacity:0.95}
+
+    .main-content{display:flex;gap:24px;align-items:center;margin-top:18px;flex-wrap:wrap}
+    .message{
+      flex:1 1 420px;padding:18px;border-radius:12px;min-width:260px;
+    }
+
+    .actions{display:flex;gap:12px;align-items:center;margin-top:14px}
+    .btn{
+      background:linear-gradient(90deg,#ffcf66,#ff6b6b);
+      color:#210b04;border:none;padding:12px 18px;border-radius:12px;font-weight:700;cursor:pointer;
+      box-shadow:0 8px 20px rgba(255,120,70,0.12);transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .btn:active{transform:scale(.98)}
+    .btn.secondary{background:linear-gradient(90deg,#60a5fa,#7c3aed);color:white}
+
+    .from-line{margin-top:12px;font-weight:600;opacity:0.95}
+
+    /* sparkle around the card */
+    .sparkles{position:absolute;inset:0;pointer-events:none}
+
+    /* footer small text */
+    footer{display:flex;justify-content:space-between;align-items:center;margin-top:16px;opacity:0.9}
+    small{font-size:13px}
+
+    /* responsive tweaks */
+    @media (max-width:640px){
+      h1{font-size:36px}
+      .logo{width:64px;height:64px}
+    }
+
+    /* Floating diya */
+    .diya{
+      position:absolute;right:28px;bottom:28px;width:140px;height:140px;transform:rotate(-6deg);
+      filter:drop-shadow(0 16px 40px rgba(0,0,0,0.45));
+    }
+
+    /* little glowing greeting */
+    .glow{ text-shadow:0 6px 24px rgba(255,192,80,0.18), 0 2px 6px rgba(255,120,80,0.08) }
+
+  </style>
+</head>
+<body>
+  <div class="card" role="main">
+    <div class="sparkles" aria-hidden>
+      <!-- canvas for animated fireworks/sparkles -->
+      <canvas id="fxCanvas" style="width:100%;height:100%;display:block"></canvas>
+    </div>
+
+    <header>
+      <div class="logo" aria-hidden>
+        <!-- small diya icon -->
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="32" cy="38" rx="18" ry="10" fill="#ffcf66" />
+          <path d="M20 38c0-6 8-12 12-12s12 6 12 12" fill="#ff7a7a"/>
+          <path d="M32 12c4 6-2 10-2 12s6-1 4-8c0 0 6 0 2-6-4-6-6-4-4- - ?" fill="#fff"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="glow">✨ Happy Diwali, Ishaan! ✨</h1>
+        <p class="lead">Wishing you endless joy, success, and light this Diwali. May your days shine bright like fireworks.</p>
+      </div>
+    </header>
+
+    <div class="main-content">
+      <div class="message">
+        <p style="font-size:16px;line-height:1.6">Dear <strong>Ishaan</strong>,</p>
+        <p style="margin-top:8px;">On this festival of lights, I wish you laughter, good health, and great moments with family and friends. Let's celebrate with brightness, sweets, and a little sparkle 🎆</p>
+
+        <div class="actions">
+          <button id="burstBtn" class="btn">Click to Burst Crackers 🎇</button>
+          <button id="toggleMusic" class="btn secondary">Toggle Music ♪</button>
+        </div>
+
+        <div class="from-line">💫 Built by Tanmay</div>
+
+        <footer>
+          <small>Made with ❤️ and lots of sparkle</small>
+          <small style="font-style:italic">Open on mobile for full effect</small>
+        </footer>
+      </div>
+
+      <!-- decorative diya SVG -->
+      <div class="diya" aria-hidden>
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <g>
+            <ellipse cx="100" cy="140" rx="60" ry="18" fill="#3b1f12" opacity="0.9"/>
+            <path d="M40 140 Q100 60 160 140 Z" fill="#ffd580"/>
+            <path d="M80 110 C90 80 110 80 120 110 C110 100 90 100 80 110 Z" fill="#ff6b6b"/>
+            <path d="M100 60 L96 84 L104 84 Z" fill="#fff59d"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- OPTIONAL: add a music source by replacing the empty src with a URL to a short royalty-free tune -->
+  <audio id="bgMusic" loop preload="auto">
+    <!-- Example: add src="https://example.com/diwali-loop.mp3" -->
+  </audio>
+
+  <script>
+    // ====== Fireworks / Sparkles on canvas ======
+    const canvas = document.getElementById('fxCanvas');
+    const ctx = canvas.getContext('2d');
+    let DPR = window.devicePixelRatio || 1;
+    function resize(){
+      DPR = window.devicePixelRatio || 1;
+      canvas.width = Math.floor(canvas.clientWidth * DPR);
+      canvas.height = Math.floor(canvas.clientHeight * DPR);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Particle system
+    const particles = [];
+    function rand(a,b){return a + Math.random()*(b-a)}
+
+    function spawnFirework(x,y, hu){
+      const count = 40 + Math.floor(Math.random()*40);
+      for(let i=0;i<count;i++){
+        particles.push({
+          x:x, y:y,
+          vx: Math.cos(Math.random()*Math.PI*2)*rand(1,6),
+          vy: Math.sin(Math.random()*Math.PI*2)*rand(1,6),
+          life: rand(40,100),
+          age:0,
+          size: rand(1,3),
+          hue: hu + rand(-40,40)
+        });
+      }
+    }
+
+    function animate(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      // translucent overlay for trails
+      ctx.fillStyle = 'rgba(6,6,12,0.22)';
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+
+      for(let i=particles.length-1;i>=0;i--){
+        const p = particles[i];
+        p.vy += 0.06; // gravity
+        p.x += p.vx; p.y += p.vy; p.age++;
+        const lifeRatio = 1 - p.age / p.life;
+        if(lifeRatio <= 0){ particles.splice(i,1); continue }
+
+        ctx.beginPath();
+        const alpha = Math.max(lifeRatio,0)*0.9;
+        const size = p.size * (1 + (1-lifeRatio)*2) * DPR;
+        ctx.fillStyle = `hsla(${Math.floor(p.hue)}, 90%, 60%, ${alpha})`;
+        ctx.arc(p.x*DPR, p.y*DPR, size, 0, Math.PI*2);
+        ctx.fill();
+
+        // glow
+        ctx.beginPath(); ctx.fillStyle = `rgba(255,240,200, ${alpha*0.06})`;
+        ctx.arc(p.x*DPR, p.y*DPR, size*6, 0, Math.PI*2); ctx.fill();
+      }
+
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // initial gentle random sparkles
+    setInterval(()=>{
+      const x = rand(canvas.clientWidth*0.15, canvas.clientWidth*0.85);
+      const y = rand(canvas.clientHeight*0.15, canvas.clientHeight*0.5);
+      spawnFirework(x,y, rand(0,360));
+    }, 900);
+
+    // Button to burst crackers
+    document.getElementById('burstBtn').addEventListener('click', (e)=>{
+      // spawn many fireworks across the top
+      for(let i=0;i<6;i++){
+        const x = rand(canvas.clientWidth*0.05, canvas.clientWidth*0.95);
+        const y = rand(canvas.clientHeight*0.05, canvas.clientHeight*0.35);
+        spawnFirework(x,y, rand(10,60*i+120));
+      }
+    });
+
+    // small interactive spawn on click anywhere
+    canvas.addEventListener('click', (ev)=>{
+      const rect = canvas.getBoundingClientRect();
+      const x = ev.clientX - rect.left; const y = ev.clientY - rect.top;
+      spawnFirework(x,y, rand(0,360));
+    });
+
+    // ====== music toggle ======
+    const music = document.getElementById('bgMusic');
+    // if user wants music, set music.src to a hosted mp3 url in the HTML above
+    document.getElementById('toggleMusic').addEventListener('click', ()=>{
+      if(!music.src){
+        alert('To enable music: open the HTML and add a royalty-free MP3 URL inside the <audio> tag src attribute.');
+        return;
+      }
+      if(music.paused) music.play().catch(()=>{}); else music.pause();
+    });
+
+    // Accessibility: prefer-reduced-motion respects
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if(media.matches){
+      // reduce particle spawn if user prefers
+      particles.length = 0; // clear
+    }
+
+    // small safety: stop animation when page hidden
+    document.addEventListener('visibilitychange', ()=>{
+      if(document.hidden){ /*pause heavy spawn*/ }
+    });
+
+  </script>
+</body>
+</html>
